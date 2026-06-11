@@ -1,0 +1,1679 @@
+<!DOCTYPE html>
+<html lang="sq">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>ShkupiMeRrethin - Lajme të Fundit</title>
+    <style>
+        :root {
+            --bg-primary: #0a0a0a;
+            --bg-secondary: #141414;
+            --bg-card: #1a1a1a;
+            --text-primary: #ffffff;
+            --text-secondary: #a0a0a0;
+            --accent-red: #e63946;
+            --accent-green: #2a9d8f;
+            --transition: all 0.3s cubic-bezier(0.4, 0, 0.2, 1);
+        }
+
+        * {
+            margin: 0;
+            padding: 0;
+            box-sizing: border-box;
+        }
+
+        html {
+            scroll-behavior: smooth;
+        }
+
+        body {
+            font-family: 'Segoe UI', system-ui, -apple-system, BlinkMacSystemFont, sans-serif;
+            background-color: var(--bg-primary);
+            color: var(--text-primary);
+            line-height: 1.6;
+            -webkit-font-smoothing: antialiased;
+        }
+
+        /* Top Bar */
+        .top-bar {
+            background-color: #000000;
+            color: var(--text-secondary);
+            padding: 10px 5%;
+            font-size: 0.85rem;
+            display: flex;
+            justify-content: space-between;
+            align-items: center;
+            border-bottom: 1px solid #222;
+        }
+
+        .top-bar .date {
+            color: var(--accent-green); font-weight: 600;
+            letter-spacing: 0.5px;
+        }
+
+        /* Header & Navigation */
+        header {
+            background-color: rgba(20, 20, 20, 0.95);
+            backdrop-filter: blur(10px);
+            position: sticky;
+            top: 0;
+            z-index: 1000;
+            border-bottom: 2px solid var(--accent-red);
+        }
+
+        nav {
+            display: flex;
+            justify-content: space-between;
+            align-items: center;
+            padding: 1.2rem 5%;
+            max-width: 1400px;
+            margin: 0 auto;
+        }
+
+        .logo {
+            font-size: 1.8rem;
+            font-weight: 800;
+            letter-spacing: -0.5px;
+            color: var(--text-primary);
+            text-decoration: none;
+            display: flex;
+            align-items: center;
+            gap: 2px;
+        }
+
+        .logo span.red { color: var(--accent-red); }
+        .logo span.green { color: var(--accent-green); }
+
+        .nav-links {
+            display: flex;
+            gap: 2.5rem;
+            list-style: none;
+        }
+
+        .nav-links a {
+            color: var(--text-primary);
+            text-decoration: none;
+            font-weight: 500;
+            font-size: 0.95rem;
+            position: relative;
+            transition: var(--transition); }
+
+        .nav-links a::after {
+            content: '';
+            position: absolute;
+            bottom: -6px;
+            left: 0;
+            width: 0;
+            height: 2px;
+            background-color: var(--accent-green);
+            transition: var(--transition);
+        }
+
+        .nav-links a:hover {
+            color: var(--accent-green);
+        }
+
+        .nav-links a:hover::after {
+            width: 100%;
+        }
+
+        /* Main Layout */
+        main {
+            max-width: 1400px;
+            margin: 0 auto;
+            padding: 3rem 5%;
+        }
+
+        /* Hero Section */
+        .hero {
+            display: grid;
+            grid-template-columns: 2fr 1fr;
+            gap: 2rem;
+            margin-bottom: 4rem;
+        }
+
+        .hero-main {
+            position: relative;
+            border-radius: 16px;
+            overflow: hidden;
+            background: linear-gradient(to top, rgba(0,0,0,0.9) 0%, rgba(0,0,0,0.2) 100%), 
+                        url('https://images.unsplash.com/photo-1572981779307-38b8cabb2407?auto=format&fit=crop&w=1000&q=80');
+            background-size: cover;
+            background-position: center;
+            min-height: 450px;
+            display: flex;
+            flex-direction: column;
+            justify-content: flex-end;
+            padding: 2.5rem;
+            transition: var(--transition); cursor: pointer;
+            border: 1px solid #222;
+        }
+
+        .hero-main:hover {
+            transform: translateY(-5px);
+            box-shadow: 0 20px 40px rgba(230, 57, 70, 0.1);
+            border-color: var(--accent-red);
+        }
+
+        .badge {
+            display: inline-block;
+            padding: 6px 14px;
+            border-radius: 6px;
+            font-size: 0.75rem;
+            font-weight: 700;
+            text-transform: uppercase;
+            letter-spacing: 1px;
+            margin-bottom: 1rem;
+            width: fit-content;
+        }
+
+        .badge.red { 
+            background-color: var(--accent-red); 
+            color: white; 
+            box-shadow: 0 4px 15px rgba(230, 57, 70, 0.3);
+        }
+        
+        .badge.green { 
+            background-color: var(--accent-green); 
+            color: white; 
+            box-shadow: 0 4px 15px rgba(42, 157, 143, 0.3);
+        }
+
+        .hero-main h1 {
+            font-size: 2.8rem;
+            margin-bottom: 1rem;
+            line-height: 1.1;
+            font-weight: 800;
+        }
+
+        .hero-main p {
+            color: #d0d0d0;
+            font-size: 1.15rem;
+            max-width: 90%;
+        }
+
+        /* Side News */
+        .side-news {
+            display: flex; flex-direction: column;
+            gap: 1.5rem;
+        }
+
+        .side-card {
+            background-color: var(--bg-card);
+            border-radius: 12px;
+            padding: 1.5rem;
+            border-left: 4px solid var(--accent-green);
+            transition: var(--transition);
+            cursor: pointer;
+            height: 100%;
+            display: flex;
+            flex-direction: column;
+            justify-content: center;
+        }
+
+        .side-card:hover {
+            background-color: #222;
+            transform: translateX(8px);
+            border-left-color: var(--accent-red);
+        }
+
+        .side-card .meta {
+            font-size: 0.8rem;
+            color: var(--accent-green);
+            font-weight: 600;
+            margin-bottom: 0.5rem;
+            text-transform: uppercase;
+        }
+
+        .side-card h3 {
+            font-size: 1.15rem;
+            line-height: 1.4;
+            font-weight: 600;
+        }
+
+        /* Section Titles */
+        .section-title {
+            font-size: 1.8rem;
+            margin-bottom: 2rem;
+            display: flex;
+            align-items: center;
+            gap: 1rem;
+            font-weight: 700;
+        }
+
+        .section-title::before {
+            content: '';
+            width: 5px; height: 32px;
+            background-color: var(--accent-red);
+            border-radius: 3px;
+        }
+
+        /* News Grid */
+        .news-grid {
+            display: grid;
+            grid-template-columns: repeat(auto-fit, minmax(320px, 1fr));
+            gap: 2rem;
+            margin-bottom: 4rem;
+        }
+
+        .news-card {
+            background-color: var(--bg-card);
+            border-radius: 16px;
+            overflow: hidden;
+            transition: var(--transition);
+            border: 1px solid #222;
+            display: flex;
+            flex-direction: column;
+        }
+
+        .news-card:hover {
+            transform: translateY(-8px);
+            border-color: var(--accent-green);
+            box-shadow: 0 15px 30px rgba(0,0,0,0.4);
+        }
+
+        .news-image {
+            height: 220px;
+            background-color: #2a2a2a;
+            background-size: cover;
+            background-position: center;
+            transition: var(--transition);
+        }
+
+        .news-card:hover .news-image {
+            transform: scale(1.05);
+        }
+
+        .news-content {
+            padding: 1.5rem;
+            flex-grow: 1;
+            display: flex;
+            flex-direction: column;
+        }
+
+        .news-content .category {
+            color: var(--accent-red); font-size: 0.8rem;
+            font-weight: 700;
+            text-transform: uppercase;
+            margin-bottom: 0.5rem;
+        }
+
+        .news-content h3 {
+            font-size: 1.25rem;
+            margin-bottom: 0.8rem;
+            line-height: 1.4;
+            font-weight: 700;
+        }
+
+        .news-content p {
+            color: var(--text-secondary);
+            font-size: 0.95rem;
+            margin-bottom: 1.5rem;
+            flex-grow: 1;
+        }
+
+        .read-more {
+            color: var(--text-primary);
+            text-decoration: none;
+            font-weight: 600;
+            font-size: 0.9rem;
+            display: inline-flex;
+            align-items: center;
+            gap: 8px;
+            transition: var(--transition);
+        }
+
+        .read-more:hover {
+            color: var(--accent-green);
+            gap: 12px;
+        }
+
+        .read-more::after {
+            content: '→';
+            font-size: 1.2rem;
+            transition: var(--transition);
+        }
+
+        /* Footer */
+        footer {
+            background-color: #050505;
+            border-top: 3px solid var(--accent-green);
+            padding: 4rem 5% 2rem;
+            margin-top: 2rem;
+        }
+        .footer-content {
+            max-width: 1400px;
+            margin: 0 auto;
+            text-align: center;
+        }
+
+        .footer-logo {
+            font-size: 2rem;
+            font-weight: 800;
+            margin-bottom: 1.5rem;
+            letter-spacing: -0.5px;
+        }
+
+        .footer-links {
+            display: flex;
+            justify-content: center;
+            gap: 2.5rem;
+            margin-bottom: 3rem;
+            flex-wrap: wrap;
+        }
+
+        .footer-links a {
+            color: var(--text-secondary);
+            text-decoration: none;
+            font-weight: 500;
+            transition: var(--transition);
+            position: relative;
+        }
+
+        .footer-links a:hover {
+            color: var(--accent-red);
+        }
+
+        .copyright {
+            color: #444;
+            font-size: 0.85rem;
+            padding-top: 2rem;
+            border-top: 1px solid #1a1a1a;
+        }
+
+        /* Animations */
+        @keyframes fadeInUp {
+            from { 
+                opacity: 0; 
+                transform: translateY(30px); 
+            }
+            to { 
+                opacity: 1; 
+                transform: translateY(0); 
+            } }
+
+        .hero, .latest-news, footer {
+            animation: fadeInUp 0.8s ease-out forwards;
+        }
+
+        .latest-news {
+            animation-delay: 0.2s;
+            opacity: 0;
+            animation-fill-mode: forwards;
+        }
+
+        footer {
+            animation-delay: 0.4s;
+            opacity: 0;
+            animation-fill-mode: forwards;
+        }
+
+        /* Responsive Design */
+        @media (max-width: 968px) {
+            .hero {
+                grid-template-columns: 1fr;
+            }
+            
+            .hero-main {
+                min-height: 350px;
+            }
+
+            .hero-main h1 {
+                font-size: 2rem;
+            }
+
+            .nav-links {
+                gap: 1.5rem;
+            }
+        }
+
+        @media (max-width: 768px) {
+            .top-bar {
+                flex-direction: column;
+                gap: 5px;
+                text-align: center;
+            }
+
+            nav {
+                flex-direction: column;
+                gap: 1.5rem;
+            }
+
+            .nav-links { gap: 1.2rem;
+                flex-wrap: wrap;
+                justify-content: center;
+            }
+
+            .hero-main h1 {
+                font-size: 1.8rem;
+            }
+
+            .news-grid {
+                grid-template-columns: 1fr;
+            }
+        }
+    </style>
+</head>
+<body>
+
+    <div class="top-bar">
+        <span>Mirësevini në portalin tuaj të besuar të lajmeve</span>
+        <span class="date">E enjte, 11 Qershor 2026</span>
+    </div>
+
+    <header>
+        <nav>
+            <a href="#" class="logo">
+                Shkupi<span class="red">Me</span><span class="green">Rrethin</span>
+            </a>
+            <ul class="nav-links">
+                <li><a href="#">Kryefaqja</a></li>
+                <li><a href="#">Vendore</a></li>
+                <li><a href="#">Politikë</a></li>
+                <li><a href="#">Sport</a></li>
+                <li><a href="#">Kulturë</a></li>
+                <li><a href="#">Kontakt</a></li>
+            </ul>
+        </nav>
+    </header>
+
+    <main>
+        <!-- Hero Section -->
+        <section class="hero">
+            <article class="hero-main">
+                <span class="badge red">Lajm i Fundit</span>
+                <h1>Zhvillime të reja në projektet infrastrukturore të Shkupit dhe rrethinës</h1>
+                <p>Bashkia njofton përfundimin e fazës së parë të rikonstruksionit të rrugëve kryesore, duke premtuar një qarkullim më të rrjedhshëm për banorët.</p>
+            </article>
+            
+            <div class="side-news">
+                <article class="side-card">
+                    <span class="meta">Ekonomi • Para 2 orësh</span> <h3>Tregu vendas shënon rritje të ndjeshme në tremujorin e dytë të vitit 2026</h3>
+                </article>
+                <article class="side-card">
+                    <span class="meta">Rajoni • Para 4 orësh</span>
+                    <h3>Marrëveshja e re e bashkëpunimit ndërmjet komunave të rajonit firmoset sot</h3>
+                </article>
+                <article class="side-card">
+                    <span class="meta">Moti • Para 5 orësh</span>
+                    <h3>Parashikimi i motit: Fundjavë me diell dhe temperatura të këndshme për të gjithë rajonin</h3>
+                </article>
+            </div>
+        </section>
+
+        <!-- Latest News Grid -->
+        <section class="latest-news">
+            <h2 class="section-title">Lajmet e Fundit</h2>
+            
+            <div class="news-grid">
+                <article class="news-card">
+                    <div class="news-image" style="background-image: url('https://images.unsplash.com/photo-1486406146926-c627a92ad1ab?auto=format&fit=crop&w=600&q=80');"></div>
+                    <div class="news-content">
+                        <span class="category">Vendore</span>
+                        <h3>Hapja e qendrës së re teknologjike sjell 500 vende të reja pune</h3>
+                        <p>Investimi i ri pritet të nxisë inovacionin dhe të tërheqë talente të reja nga e gjithë rajoni drejt kryeqytetit.</p>
+                        <a href="#" class="read-more">Lexo më shumë</a>
+                    </div>
+                </article>
+
+                <article class="news-card">
+                    <div class="news-image" style="background-image: url('https://images.unsplash.com/photo-1492684223066-81342ee5ff30?auto=format&fit=crop&w=600&q=80');"></div>
+                    <div class="news-content">
+                        <span class="category">Kulturë</span>
+                        <h3>Festivali i Verës në Shkup mbledh mijëra vizitorë nga rajoni</h3>
+                        <p>Programi i pasur muzikor dhe artistik ka filluar mbrëmë me një performancë madhështore në sheshin qendror.</p>
+                        <a href="#" class="read-more">Lexo më shumë</a>
+                    </div>
+                </article>
+
+                <article class="news-card">
+                    <div class="news-image" style="background-image: url('https://images.unsplash.com/photo-1579952363873-27f3bade9f55?auto=format&fit=crop&w=600&q=80');"></div>
+                    <div class="news-content">
+                        <span class="category">Sport</span>
+                        <h3>Ekipi vendas përgatitet për ndeshjen vendimtare të këtij sezoni</h3>
+                        <p>Tifozët janë mbledhur masivisht për të mbështetur skuadrën në sfidën e madhe që pritet të zhvillohet këtë të diel.</p>
+                        <a href="#" class="read-more">Lexo më shumë</a>
+                    </div>
+                </article>
+            </div>
+        </section>
+    </main>
+    <footer>
+        <div class="footer-content">
+            <div class="footer-logo">
+                Shkupi<span style="color: var(--accent-red);">Me</span><span style="color: var(--accent-green);">Rrethin</span>
+            </div>
+            <div class="footer-links">
+                <a href="#">Rreth Nesh</a>
+                <a href="#">Politika e Privatësisë</a>
+                <a href="#">Kushtet e Përdorimit</a>
+                <a href="#">Reklamimi</a>
+                <a href="#">Na Kontaktoni</a>
+            </div>
+            <div class="copyright">
+                &copy; 2026 ShkupiMeRrethin. Të gjitha të drejtat e rezervuara.
+            </div>
+        </div>
+    </footer>
+
+</body>
+</html><!DOCTYPE html>
+<html lang="sq">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>ShkupiMeRrethin - Lajme të Fundit</title>
+    <style>
+        :root {
+            --bg-primary: #0a0a0a;
+            --bg-secondary: #141414;
+            --bg-card: #1a1a1a;
+            --text-primary: #ffffff;
+            --text-secondary: #a0a0a0;
+            --accent-red: #e63946;
+            --accent-green: #2a9d8f;
+            --transition: all 0.3s cubic-bezier(0.4, 0, 0.2, 1);
+        }
+
+        * {
+            margin: 0;
+            padding: 0;
+            box-sizing: border-box;
+        }
+
+        html {
+            scroll-behavior: smooth;
+        }
+
+        body {
+            font-family: 'Segoe UI', system-ui, -apple-system, BlinkMacSystemFont, sans-serif;
+            background-color: var(--bg-primary);
+            color: var(--text-primary);
+            line-height: 1.6;
+            -webkit-font-smoothing: antialiased;
+        }
+
+        /* Top Bar */
+        .top-bar {
+            background-color: #000000;
+            color: var(--text-secondary);
+            padding: 10px 5%;
+            font-size: 0.85rem;
+            display: flex;
+            justify-content: space-between;
+            align-items: center;
+            border-bottom: 1px solid #222;
+        }
+
+        .top-bar .date {
+            color: var(--accent-green); font-weight: 600;
+            letter-spacing: 0.5px;
+        }
+
+        /* Header & Navigation */
+        header {
+            background-color: rgba(20, 20, 20, 0.95);
+            backdrop-filter: blur(10px);
+            position: sticky;
+            top: 0;
+            z-index: 1000;
+            border-bottom: 2px solid var(--accent-red);
+        }
+
+        nav {
+            display: flex;
+            justify-content: space-between;
+            align-items: center;
+            padding: 1.2rem 5%;
+            max-width: 1400px;
+            margin: 0 auto;
+        }
+
+        .logo {
+            font-size: 1.8rem;
+            font-weight: 800;
+            letter-spacing: -0.5px;
+            color: var(--text-primary);
+            text-decoration: none;
+            display: flex;
+            align-items: center;
+            gap: 2px;
+        }
+
+        .logo span.red { color: var(--accent-red); }
+        .logo span.green { color: var(--accent-green); }
+
+        .nav-links {
+            display: flex;
+            gap: 2.5rem;
+            list-style: none;
+        }
+
+        .nav-links a {
+            color: var(--text-primary);
+            text-decoration: none;
+            font-weight: 500;
+            font-size: 0.95rem;
+            position: relative;
+            transition: var(--transition); }
+
+        .nav-links a::after {
+            content: '';
+            position: absolute;
+            bottom: -6px;
+            left: 0;
+            width: 0;
+            height: 2px;
+            background-color: var(--accent-green);
+            transition: var(--transition);
+        }
+
+        .nav-links a:hover {
+            color: var(--accent-green);
+        }
+
+        .nav-links a:hover::after {
+            width: 100%;
+        }
+
+        /* Main Layout */
+        main {
+            max-width: 1400px;
+            margin: 0 auto;
+            padding: 3rem 5%;
+        }
+
+        /* Hero Section */
+        .hero {
+            display: grid;
+            grid-template-columns: 2fr 1fr;
+            gap: 2rem;
+            margin-bottom: 4rem;
+        }
+
+        .hero-main {
+            position: relative;
+            border-radius: 16px;
+            overflow: hidden;
+            background: linear-gradient(to top, rgba(0,0,0,0.9) 0%, rgba(0,0,0,0.2) 100%), 
+                        url('https://images.unsplash.com/photo-1572981779307-38b8cabb2407?auto=format&fit=crop&w=1000&q=80');
+            background-size: cover;
+            background-position: center;
+            min-height: 450px;
+            display: flex;
+            flex-direction: column;
+            justify-content: flex-end;
+            padding: 2.5rem;
+            transition: var(--transition); cursor: pointer;
+            border: 1px solid #222;
+        }
+
+        .hero-main:hover {
+            transform: translateY(-5px);
+            box-shadow: 0 20px 40px rgba(230, 57, 70, 0.1);
+            border-color: var(--accent-red);
+        }
+
+        .badge {
+            display: inline-block;
+            padding: 6px 14px;
+            border-radius: 6px;
+            font-size: 0.75rem;
+            font-weight: 700;
+            text-transform: uppercase;
+            letter-spacing: 1px;
+            margin-bottom: 1rem;
+            width: fit-content;
+        }
+
+        .badge.red { 
+            background-color: var(--accent-red); 
+            color: white; 
+            box-shadow: 0 4px 15px rgba(230, 57, 70, 0.3);
+        }
+        
+        .badge.green { 
+            background-color: var(--accent-green); 
+            color: white; 
+            box-shadow: 0 4px 15px rgba(42, 157, 143, 0.3);
+        }
+
+        .hero-main h1 {
+            font-size: 2.8rem;
+            margin-bottom: 1rem;
+            line-height: 1.1;
+            font-weight: 800;
+        }
+
+        .hero-main p {
+            color: #d0d0d0;
+            font-size: 1.15rem;
+            max-width: 90%;
+        }
+
+        /* Side News */
+        .side-news {
+            display: flex; flex-direction: column;
+            gap: 1.5rem;
+        }
+
+        .side-card {
+            background-color: var(--bg-card);
+            border-radius: 12px;
+            padding: 1.5rem;
+            border-left: 4px solid var(--accent-green);
+            transition: var(--transition);
+            cursor: pointer;
+            height: 100%;
+            display: flex;
+            flex-direction: column;
+            justify-content: center;
+        }
+
+        .side-card:hover {
+            background-color: #222;
+            transform: translateX(8px);
+            border-left-color: var(--accent-red);
+        }
+
+        .side-card .meta {
+            font-size: 0.8rem;
+            color: var(--accent-green);
+            font-weight: 600;
+            margin-bottom: 0.5rem;
+            text-transform: uppercase;
+        }
+
+        .side-card h3 {
+            font-size: 1.15rem;
+            line-height: 1.4;
+            font-weight: 600;
+        }
+
+        /* Section Titles */
+        .section-title {
+            font-size: 1.8rem;
+            margin-bottom: 2rem;
+            display: flex;
+            align-items: center;
+            gap: 1rem;
+            font-weight: 700;
+        }
+
+        .section-title::before {
+            content: '';
+            width: 5px; height: 32px;
+            background-color: var(--accent-red);
+            border-radius: 3px;
+        }
+
+        /* News Grid */
+        .news-grid {
+            display: grid;
+            grid-template-columns: repeat(auto-fit, minmax(320px, 1fr));
+            gap: 2rem;
+            margin-bottom: 4rem;
+        }
+
+        .news-card {
+            background-color: var(--bg-card);
+            border-radius: 16px;
+            overflow: hidden;
+            transition: var(--transition);
+            border: 1px solid #222;
+            display: flex;
+            flex-direction: column;
+        }
+
+        .news-card:hover {
+            transform: translateY(-8px);
+            border-color: var(--accent-green);
+            box-shadow: 0 15px 30px rgba(0,0,0,0.4);
+        }
+
+        .news-image {
+            height: 220px;
+            background-color: #2a2a2a;
+            background-size: cover;
+            background-position: center;
+            transition: var(--transition);
+        }
+
+        .news-card:hover .news-image {
+            transform: scale(1.05);
+        }
+
+        .news-content {
+            padding: 1.5rem;
+            flex-grow: 1;
+            display: flex;
+            flex-direction: column;
+        }
+
+        .news-content .category {
+            color: var(--accent-red); font-size: 0.8rem;
+            font-weight: 700;
+            text-transform: uppercase;
+            margin-bottom: 0.5rem;
+        }
+
+        .news-content h3 {
+            font-size: 1.25rem;
+            margin-bottom: 0.8rem;
+            line-height: 1.4;
+            font-weight: 700;
+        }
+
+        .news-content p {
+            color: var(--text-secondary);
+            font-size: 0.95rem;
+            margin-bottom: 1.5rem;
+            flex-grow: 1;
+        }
+
+        .read-more {
+            color: var(--text-primary);
+            text-decoration: none;
+            font-weight: 600;
+            font-size: 0.9rem;
+            display: inline-flex;
+            align-items: center;
+            gap: 8px;
+            transition: var(--transition);
+        }
+
+        .read-more:hover {
+            color: var(--accent-green);
+            gap: 12px;
+        }
+
+        .read-more::after {
+            content: '→';
+            font-size: 1.2rem;
+            transition: var(--transition);
+        }
+
+        /* Footer */
+        footer {
+            background-color: #050505;
+            border-top: 3px solid var(--accent-green);
+            padding: 4rem 5% 2rem;
+            margin-top: 2rem;
+        }
+        .footer-content {
+            max-width: 1400px;
+            margin: 0 auto;
+            text-align: center;
+        }
+
+        .footer-logo {
+            font-size: 2rem;
+            font-weight: 800;
+            margin-bottom: 1.5rem;
+            letter-spacing: -0.5px;
+        }
+
+        .footer-links {
+            display: flex;
+            justify-content: center;
+            gap: 2.5rem;
+            margin-bottom: 3rem;
+            flex-wrap: wrap;
+        }
+
+        .footer-links a {
+            color: var(--text-secondary);
+            text-decoration: none;
+            font-weight: 500;
+            transition: var(--transition);
+            position: relative;
+        }
+
+        .footer-links a:hover {
+            color: var(--accent-red);
+        }
+
+        .copyright {
+            color: #444;
+            font-size: 0.85rem;
+            padding-top: 2rem;
+            border-top: 1px solid #1a1a1a;
+        }
+
+        /* Animations */
+        @keyframes fadeInUp {
+            from { 
+                opacity: 0; 
+                transform: translateY(30px); 
+            }
+            to { 
+                opacity: 1; 
+                transform: translateY(0); 
+            } }
+
+        .hero, .latest-news, footer {
+            animation: fadeInUp 0.8s ease-out forwards;
+        }
+
+        .latest-news {
+            animation-delay: 0.2s;
+            opacity: 0;
+            animation-fill-mode: forwards;
+        }
+
+        footer {
+            animation-delay: 0.4s;
+            opacity: 0;
+            animation-fill-mode: forwards;
+        }
+
+        /* Responsive Design */
+        @media (max-width: 968px) {
+            .hero {
+                grid-template-columns: 1fr;
+            }
+            
+            .hero-main {
+                min-height: 350px;
+            }
+
+            .hero-main h1 {
+                font-size: 2rem;
+            }
+
+            .nav-links {
+                gap: 1.5rem;
+            }
+        }
+
+        @media (max-width: 768px) {
+            .top-bar {
+                flex-direction: column;
+                gap: 5px;
+                text-align: center;
+            }
+
+            nav {
+                flex-direction: column;
+                gap: 1.5rem;
+            }
+
+            .nav-links { gap: 1.2rem;
+                flex-wrap: wrap;
+                justify-content: center;
+            }
+
+            .hero-main h1 {
+                font-size: 1.8rem;
+            }
+
+            .news-grid {
+                grid-template-columns: 1fr;
+            }
+        }
+    </style>
+</head>
+<body>
+
+    <div class="top-bar">
+        <span>Mirësevini në portalin tuaj të besuar të lajmeve</span>
+        <span class="date">E enjte, 11 Qershor 2026</span>
+    </div>
+
+    <header>
+        <nav>
+            <a href="#" class="logo">
+                Shkupi<span class="red">Me</span><span class="green">Rrethin</span>
+            </a>
+            <ul class="nav-links">
+                <li><a href="#">Kryefaqja</a></li>
+                <li><a href="#">Vendore</a></li>
+                <li><a href="#">Politikë</a></li>
+                <li><a href="#">Sport</a></li>
+                <li><a href="#">Kulturë</a></li>
+                <li><a href="#">Kontakt</a></li>
+            </ul>
+        </nav>
+    </header>
+
+    <main>
+        <!-- Hero Section -->
+        <section class="hero">
+            <article class="hero-main">
+                <span class="badge red">Lajm i Fundit</span>
+                <h1>Zhvillime të reja në projektet infrastrukturore të Shkupit dhe rrethinës</h1>
+                <p>Bashkia njofton përfundimin e fazës së parë të rikonstruksionit të rrugëve kryesore, duke premtuar një qarkullim më të rrjedhshëm për banorët.</p>
+            </article>
+            
+            <div class="side-news">
+                <article class="side-card">
+                    <span class="meta">Ekonomi • Para 2 orësh</span> <h3>Tregu vendas shënon rritje të ndjeshme në tremujorin e dytë të vitit 2026</h3>
+                </article>
+                <article class="side-card">
+                    <span class="meta">Rajoni • Para 4 orësh</span>
+                    <h3>Marrëveshja e re e bashkëpunimit ndërmjet komunave të rajonit firmoset sot</h3>
+                </article>
+                <article class="side-card">
+                    <span class="meta">Moti • Para 5 orësh</span>
+                    <h3>Parashikimi i motit: Fundjavë me diell dhe temperatura të këndshme për të gjithë rajonin</h3>
+                </article>
+            </div>
+        </section>
+
+        <!-- Latest News Grid -->
+        <section class="latest-news">
+            <h2 class="section-title">Lajmet e Fundit</h2>
+            
+            <div class="news-grid">
+                <article class="news-card">
+                    <div class="news-image" style="background-image: url('https://images.unsplash.com/photo-1486406146926-c627a92ad1ab?auto=format&fit=crop&w=600&q=80');"></div>
+                    <div class="news-content">
+                        <span class="category">Vendore</span>
+                        <h3>Hapja e qendrës së re teknologjike sjell 500 vende të reja pune</h3>
+                        <p>Investimi i ri pritet të nxisë inovacionin dhe të tërheqë talente të reja nga e gjithë rajoni drejt kryeqytetit.</p>
+                        <a href="#" class="read-more">Lexo më shumë</a>
+                    </div>
+                </article>
+
+                <article class="news-card">
+                    <div class="news-image" style="background-image: url('https://images.unsplash.com/photo-1492684223066-81342ee5ff30?auto=format&fit=crop&w=600&q=80');"></div>
+                    <div class="news-content">
+                        <span class="category">Kulturë</span>
+                        <h3>Festivali i Verës në Shkup mbledh mijëra vizitorë nga rajoni</h3>
+                        <p>Programi i pasur muzikor dhe artistik ka filluar mbrëmë me një performancë madhështore në sheshin qendror.</p>
+                        <a href="#" class="read-more">Lexo më shumë</a>
+                    </div>
+                </article>
+
+                <article class="news-card">
+                    <div class="news-image" style="background-image: url('https://images.unsplash.com/photo-1579952363873-27f3bade9f55?auto=format&fit=crop&w=600&q=80');"></div>
+                    <div class="news-content">
+                        <span class="category">Sport</span>
+                        <h3>Ekipi vendas përgatitet për ndeshjen vendimtare të këtij sezoni</h3>
+                        <p>Tifozët janë mbledhur masivisht për të mbështetur skuadrën në sfidën e madhe që pritet të zhvillohet këtë të diel.</p>
+                        <a href="#" class="read-more">Lexo më shumë</a>
+                    </div>
+                </article>
+            </div>
+        </section>
+    </main>
+    <footer>
+        <div class="footer-content">
+            <div class="footer-logo">
+                Shkupi<span style="color: var(--accent-red);">Me</span><span style="color: var(--accent-green);">Rrethin</span>
+            </div>
+            <div class="footer-links">
+                <a href="#">Rreth Nesh</a>
+                <a href="#">Politika e Privatësisë</a>
+                <a href="#">Kushtet e Përdorimit</a>
+                <a href="#">Reklamimi</a>
+                <a href="#">Na Kontaktoni</a>
+            </div>
+            <div class="copyright">
+                &copy; 2026 ShkupiMeRrethin. Të gjitha të drejtat e rezervuara.
+            </div>
+        </div>
+    </footer>
+
+</body>
+</html><!DOCTYPE html>
+<html lang="sq">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>ShkupiMeRrethin - Lajme të Fundit</title>
+    <style>
+        :root {
+            --bg-primary: #0a0a0a;
+            --bg-secondary: #141414;
+            --bg-card: #1a1a1a;
+            --text-primary: #ffffff;
+            --text-secondary: #a0a0a0;
+            --accent-red: #e63946;
+            --accent-green: #2a9d8f;
+            --transition: all 0.3s cubic-bezier(0.4, 0, 0.2, 1);
+        }
+
+        * {
+            margin: 0;
+            padding: 0;
+            box-sizing: border-box;
+        }
+
+        html {
+            scroll-behavior: smooth;
+        }
+
+        body {
+            font-family: 'Segoe UI', system-ui, -apple-system, BlinkMacSystemFont, sans-serif;
+            background-color: var(--bg-primary);
+            color: var(--text-primary);
+            line-height: 1.6;
+            -webkit-font-smoothing: antialiased;
+        }
+
+        /* Top Bar */
+        .top-bar {
+            background-color: #000000;
+            color: var(--text-secondary);
+            padding: 10px 5%;
+            font-size: 0.85rem;
+            display: flex;
+            justify-content: space-between;
+            align-items: center;
+            border-bottom: 1px solid #222;
+        }
+
+        .top-bar .date {
+            color: var(--accent-green); font-weight: 600;
+            letter-spacing: 0.5px;
+        }
+
+        /* Header & Navigation */
+        header {
+            background-color: rgba(20, 20, 20, 0.95);
+            backdrop-filter: blur(10px);
+            position: sticky;
+            top: 0;
+            z-index: 1000;
+            border-bottom: 2px solid var(--accent-red);
+        }
+
+        nav {
+            display: flex;
+            justify-content: space-between;
+            align-items: center;
+            padding: 1.2rem 5%;
+            max-width: 1400px;
+            margin: 0 auto;
+        }
+
+        .logo {
+            font-size: 1.8rem;
+            font-weight: 800;
+            letter-spacing: -0.5px;
+            color: var(--text-primary);
+            text-decoration: none;
+            display: flex;
+            align-items: center;
+            gap: 2px;
+        }
+
+        .logo span.red { color: var(--accent-red); }
+        .logo span.green { color: var(--accent-green); }
+
+        .nav-links {
+            display: flex;
+            gap: 2.5rem;
+            list-style: none;
+        }
+
+        .nav-links a {
+            color: var(--text-primary);
+            text-decoration: none;
+            font-weight: 500;
+            font-size: 0.95rem;
+            position: relative;
+            transition: var(--transition); }
+
+        .nav-links a::after {
+            content: '';
+            position: absolute;
+            bottom: -6px;
+            left: 0;
+            width: 0;
+            height: 2px;
+            background-color: var(--accent-green);
+            transition: var(--transition);
+        }
+
+        .nav-links a:hover {
+            color: var(--accent-green);
+        }
+
+        .nav-links a:hover::after {
+            width: 100%;
+        }
+
+        /* Main Layout */
+        main {
+            max-width: 1400px;
+            margin: 0 auto;
+            padding: 3rem 5%;
+        }
+
+        /* Hero Section */
+        .hero {
+            display: grid;
+            grid-template-columns: 2fr 1fr;
+            gap: 2rem;
+            margin-bottom: 4rem;
+        }
+
+        .hero-main {
+            position: relative;
+            border-radius: 16px;
+            overflow: hidden;
+            background: linear-gradient(to top, rgba(0,0,0,0.9) 0%, rgba(0,0,0,0.2) 100%), 
+                        url('https://images.unsplash.com/photo-1572981779307-38b8cabb2407?auto=format&fit=crop&w=1000&q=80');
+            background-size: cover;
+            background-position: center;
+            min-height: 450px;
+            display: flex;
+            flex-direction: column;
+            justify-content: flex-end;
+            padding: 2.5rem;
+            transition: var(--transition); cursor: pointer;
+            border: 1px solid #222;
+        }
+
+        .hero-main:hover {
+            transform: translateY(-5px);
+            box-shadow: 0 20px 40px rgba(230, 57, 70, 0.1);
+            border-color: var(--accent-red);
+        }
+
+        .badge {
+            display: inline-block;
+            padding: 6px 14px;
+            border-radius: 6px;
+            font-size: 0.75rem;
+            font-weight: 700;
+            text-transform: uppercase;
+            letter-spacing: 1px;
+            margin-bottom: 1rem;
+            width: fit-content;
+        }
+
+        .badge.red { 
+            background-color: var(--accent-red); 
+            color: white; 
+            box-shadow: 0 4px 15px rgba(230, 57, 70, 0.3);
+        }
+        
+        .badge.green { 
+            background-color: var(--accent-green); 
+            color: white; 
+            box-shadow: 0 4px 15px rgba(42, 157, 143, 0.3);
+        }
+
+        .hero-main h1 {
+            font-size: 2.8rem;
+            margin-bottom: 1rem;
+            line-height: 1.1;
+            font-weight: 800;
+        }
+
+        .hero-main p {
+            color: #d0d0d0;
+            font-size: 1.15rem;
+            max-width: 90%;
+        }
+
+        /* Side News */
+        .side-news {
+            display: flex; flex-direction: column;
+            gap: 1.5rem;
+        }
+
+        .side-card {
+            background-color: var(--bg-card);
+            border-radius: 12px;
+            padding: 1.5rem;
+            border-left: 4px solid var(--accent-green);
+            transition: var(--transition);
+            cursor: pointer;
+            height: 100%;
+            display: flex;
+            flex-direction: column;
+            justify-content: center;
+        }
+
+        .side-card:hover {
+            background-color: #222;
+            transform: translateX(8px);
+            border-left-color: var(--accent-red);
+        }
+
+        .side-card .meta {
+            font-size: 0.8rem;
+            color: var(--accent-green);
+            font-weight: 600;
+            margin-bottom: 0.5rem;
+            text-transform: uppercase;
+        }
+
+        .side-card h3 {
+            font-size: 1.15rem;
+            line-height: 1.4;
+            font-weight: 600;
+        }
+
+        /* Section Titles */
+        .section-title {
+            font-size: 1.8rem;
+            margin-bottom: 2rem;
+            display: flex;
+            align-items: center;
+            gap: 1rem;
+            font-weight: 700;
+        }
+
+        .section-title::before {
+            content: '';
+            width: 5px; height: 32px;
+            background-color: var(--accent-red);
+            border-radius: 3px;
+        }
+
+        /* News Grid */
+        .news-grid {
+            display: grid;
+            grid-template-columns: repeat(auto-fit, minmax(320px, 1fr));
+            gap: 2rem;
+            margin-bottom: 4rem;
+        }
+
+        .news-card {
+            background-color: var(--bg-card);
+            border-radius: 16px;
+            overflow: hidden;
+            transition: var(--transition);
+            border: 1px solid #222;
+            display: flex;
+            flex-direction: column;
+        }
+
+        .news-card:hover {
+            transform: translateY(-8px);
+            border-color: var(--accent-green);
+            box-shadow: 0 15px 30px rgba(0,0,0,0.4);
+        }
+
+        .news-image {
+            height: 220px;
+            background-color: #2a2a2a;
+            background-size: cover;
+            background-position: center;
+            transition: var(--transition);
+        }
+
+        .news-card:hover .news-image {
+            transform: scale(1.05);
+        }
+
+        .news-content {
+            padding: 1.5rem;
+            flex-grow: 1;
+            display: flex;
+            flex-direction: column;
+        }
+
+        .news-content .category {
+            color: var(--accent-red); font-size: 0.8rem;
+            font-weight: 700;
+            text-transform: uppercase;
+            margin-bottom: 0.5rem;
+        }
+
+        .news-content h3 {
+            font-size: 1.25rem;
+            margin-bottom: 0.8rem;
+            line-height: 1.4;
+            font-weight: 700;
+        }
+
+        .news-content p {
+            color: var(--text-secondary);
+            font-size: 0.95rem;
+            margin-bottom: 1.5rem;
+            flex-grow: 1;
+        }
+
+        .read-more {
+            color: var(--text-primary);
+            text-decoration: none;
+            font-weight: 600;
+            font-size: 0.9rem;
+            display: inline-flex;
+            align-items: center;
+            gap: 8px;
+            transition: var(--transition);
+        }
+
+        .read-more:hover {
+            color: var(--accent-green);
+            gap: 12px;
+        }
+
+        .read-more::after {
+            content: '→';
+            font-size: 1.2rem;
+            transition: var(--transition);
+        }
+
+        /* Footer */
+        footer {
+            background-color: #050505;
+            border-top: 3px solid var(--accent-green);
+            padding: 4rem 5% 2rem;
+            margin-top: 2rem;
+        }
+        .footer-content {
+            max-width: 1400px;
+            margin: 0 auto;
+            text-align: center;
+        }
+
+        .footer-logo {
+            font-size: 2rem;
+            font-weight: 800;
+            margin-bottom: 1.5rem;
+            letter-spacing: -0.5px;
+        }
+
+        .footer-links {
+            display: flex;
+            justify-content: center;
+            gap: 2.5rem;
+            margin-bottom: 3rem;
+            flex-wrap: wrap;
+        }
+
+        .footer-links a {
+            color: var(--text-secondary);
+            text-decoration: none;
+            font-weight: 500;
+            transition: var(--transition);
+            position: relative;
+        }
+
+        .footer-links a:hover {
+            color: var(--accent-red);
+        }
+
+        .copyright {
+            color: #444;
+            font-size: 0.85rem;
+            padding-top: 2rem;
+            border-top: 1px solid #1a1a1a;
+        }
+
+        /* Animations */
+        @keyframes fadeInUp {
+            from { 
+                opacity: 0; 
+                transform: translateY(30px); 
+            }
+            to { 
+                opacity: 1; 
+                transform: translateY(0); 
+            } }
+
+        .hero, .latest-news, footer {
+            animation: fadeInUp 0.8s ease-out forwards;
+        }
+
+        .latest-news {
+            animation-delay: 0.2s;
+            opacity: 0;
+            animation-fill-mode: forwards;
+        }
+
+        footer {
+            animation-delay: 0.4s;
+            opacity: 0;
+            animation-fill-mode: forwards;
+        }
+
+        /* Responsive Design */
+        @media (max-width: 968px) {
+            .hero {
+                grid-template-columns: 1fr;
+            }
+            
+            .hero-main {
+                min-height: 350px;
+            }
+
+            .hero-main h1 {
+                font-size: 2rem;
+            }
+
+            .nav-links {
+                gap: 1.5rem;
+            }
+        }
+
+        @media (max-width: 768px) {
+            .top-bar {
+                flex-direction: column;
+                gap: 5px;
+                text-align: center;
+            }
+
+            nav {
+                flex-direction: column;
+                gap: 1.5rem;
+            }
+
+            .nav-links { gap: 1.2rem;
+                flex-wrap: wrap;
+                justify-content: center;
+            }
+
+            .hero-main h1 {
+                font-size: 1.8rem;
+            }
+
+            .news-grid {
+                grid-template-columns: 1fr;
+            }
+        }
+    </style>
+</head>
+<body>
+
+    <div class="top-bar">
+        <span>Mirësevini në portalin tuaj të besuar të lajmeve</span>
+        <span class="date">E enjte, 11 Qershor 2026</span>
+    </div>
+
+    <header>
+        <nav>
+            <a href="#" class="logo">
+                Shkupi<span class="red">Me</span><span class="green">Rrethin</span>
+            </a>
+            <ul class="nav-links">
+                <li><a href="#">Kryefaqja</a></li>
+                <li><a href="#">Vendore</a></li>
+                <li><a href="#">Politikë</a></li>
+                <li><a href="#">Sport</a></li>
+                <li><a href="#">Kulturë</a></li>
+                <li><a href="#">Kontakt</a></li>
+            </ul>
+        </nav>
+    </header>
+
+    <main>
+        <!-- Hero Section -->
+        <section class="hero">
+            <article class="hero-main">
+                <span class="badge red">Lajm i Fundit</span>
+                <h1>Zhvillime të reja në projektet infrastrukturore të Shkupit dhe rrethinës</h1>
+                <p>Bashkia njofton përfundimin e fazës së parë të rikonstruksionit të rrugëve kryesore, duke premtuar një qarkullim më të rrjedhshëm për banorët.</p>
+            </article>
+            
+            <div class="side-news">
+                <article class="side-card">
+                    <span class="meta">Ekonomi • Para 2 orësh</span> <h3>Tregu vendas shënon rritje të ndjeshme në tremujorin e dytë të vitit 2026</h3>
+                </article>
+                <article class="side-card">
+                    <span class="meta">Rajoni • Para 4 orësh</span>
+                    <h3>Marrëveshja e re e bashkëpunimit ndërmjet komunave të rajonit firmoset sot</h3>
+                </article>
+                <article class="side-card">
+                    <span class="meta">Moti • Para 5 orësh</span>
+                    <h3>Parashikimi i motit: Fundjavë me diell dhe temperatura të këndshme për të gjithë rajonin</h3>
+                </article>
+            </div>
+        </section>
+
+        <!-- Latest News Grid -->
+        <section class="latest-news">
+            <h2 class="section-title">Lajmet e Fundit</h2>
+            
+            <div class="news-grid">
+                <article class="news-card">
+                    <div class="news-image" style="background-image: url('https://images.unsplash.com/photo-1486406146926-c627a92ad1ab?auto=format&fit=crop&w=600&q=80');"></div>
+                    <div class="news-content">
+                        <span class="category">Vendore</span>
+                        <h3>Hapja e qendrës së re teknologjike sjell 500 vende të reja pune</h3>
+                        <p>Investimi i ri pritet të nxisë inovacionin dhe të tërheqë talente të reja nga e gjithë rajoni drejt kryeqytetit.</p>
+                        <a href="#" class="read-more">Lexo më shumë</a>
+                    </div>
+                </article>
+
+                <article class="news-card">
+                    <div class="news-image" style="background-image: url('https://images.unsplash.com/photo-1492684223066-81342ee5ff30?auto=format&fit=crop&w=600&q=80');"></div>
+                    <div class="news-content">
+                        <span class="category">Kulturë</span>
+                        <h3>Festivali i Verës në Shkup mbledh mijëra vizitorë nga rajoni</h3>
+                        <p>Programi i pasur muzikor dhe artistik ka filluar mbrëmë me një performancë madhështore në sheshin qendror.</p>
+                        <a href="#" class="read-more">Lexo më shumë</a>
+                    </div>
+                </article>
+
+                <article class="news-card">
+                    <div class="news-image" style="background-image: url('https://images.unsplash.com/photo-1579952363873-27f3bade9f55?auto=format&fit=crop&w=600&q=80');"></div>
+                    <div class="news-content">
+                        <span class="category">Sport</span>
+                        <h3>Ekipi vendas përgatitet për ndeshjen vendimtare të këtij sezoni</h3>
+                        <p>Tifozët janë mbledhur masivisht për të mbështetur skuadrën në sfidën e madhe që pritet të zhvillohet këtë të diel.</p>
+                        <a href="#" class="read-more">Lexo më shumë</a>
+                    </div>
+                </article>
+            </div>
+        </section>
+    </main>
+    <footer>
+        <div class="footer-content">
+            <div class="footer-logo">
+                Shkupi<span style="color: var(--accent-red);">Me</span><span style="color: var(--accent-green);">Rrethin</span>
+            </div>
+            <div class="footer-links">
+                <a href="#">Rreth Nesh</a>
+                <a href="#">Politika e Privatësisë</a>
+                <a href="#">Kushtet e Përdorimit</a>
+                <a href="#">Reklamimi</a>
+                <a href="#">Na Kontaktoni</a>
+            </div>
+            <div class="copyright">
+                &copy; 2026 ShkupiMeRrethin. Të gjitha të drejtat e rezervuara.
+            </div>
+        </div>
+    </footer>
+
+</body>
+</html>
+        
